@@ -1,0 +1,25 @@
+﻿@{ 
+    ShoppersSquare_proto.Models.Product product = Model;
+    var productUrlName = product.Name.Replace(' ', '-');
+}
+
+<li class="card-item">
+    <a href="product/@product.Id/@productUrlName" class="card-heading">@product.Name</a>
+    <a href="product/@product.Id/@productUrlName" class="card-body">
+        <div class="card-body-image"><img src="@product.ImageUrl" /></div>
+        <p class="card-info">@product.Description</p>
+    </a>
+    <footer class="card-footer">
+        @if (Context.User.IsInRole("StoreManager"))
+        {
+            @Html.ActionLink("Update", "Update", "Products", new { id = product.Id }, new { @class = "btn" })
+            @Html.ActionLink("Delete", "Delete", "Products", new { id = product.Id }, new { @class = "btn" })
+        }
+        else
+        {
+
+            @Html.ActionLink("Add to Cart", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
+            @Html.ActionLink("Buy", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
+        }
+    </footer>
+</li>

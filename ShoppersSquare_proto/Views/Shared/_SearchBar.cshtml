@@ -1,0 +1,42 @@
+﻿<form id="productsSearchForm" class="search-bar" autocomplete="off">
+    <input name="query" class="search-input" title="Type and press enter to search" id="searchInput" type="text" placeholder="Search Products" tabindex="1" />
+    <div type="button" title="Type and press enter to search" class="search-btn">
+        <label for="searchInput" class="fa fa-search search-btn"></label>
+    </div>
+    <ul id="searchResults" class="search-results"></ul>
+</form>
+
+<script>
+    (function () {
+        //redirect to search on submit
+        var searchInput = document.getElementById('searchInput');
+        var productsSearchForm = document.getElementById('productsSearchForm');
+        productsSearchForm.onsubmit = function (e) {
+            e.preventDefault();
+            if (searchInput.value.length > 0) {
+                location.pathname = 'search/' + searchInput.value;
+            }
+        }
+
+        //Get Search Results on input
+        var searchResults = document.getElementById('searchResults');
+        searchInput.addEventListener('input', function (e) {
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+
+            xhr.onload = function () {
+                searchResults.innerHTML = "";
+                var results = xhr.response;
+                if (results != null) {
+                    results.forEach(function (result, i) {
+                        searchResults.innerHTML += '<li class="search-item"><a href="/product/' + result.id + '/' + result.name + '"/>' + result.name + '</a></li>';
+                    });
+                }
+            };
+
+            xhr.open("GET", "/Products/SearchProducts/" + searchInput.value);
+            xhr.send();
+        });
+    })();
+
+</script>

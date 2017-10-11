@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNet.Identity
+
+<div class="account-options">
+    <button title="Click for Account Options" type="button" class="fa fa-user account-menu-btn">
+        <span>&nbsp;Account</span>
+    </button>
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "account-menu-container" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+        <ul class="account-menu">
+            <li class="account-menu-item">@Html.ActionLink("Profile", "Index", "Manage")</li>
+            <li class="account-menu-item"><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+    else
+    {
+        <ul class="account-menu">
+            <li class="account-menu-item">@Html.ActionLink("Log in", "Login", "Account")</li>
+            <li class="account-menu-item">@Html.ActionLink("Register", "Register", "Account")</li>
+        </ul>
+    }
+</div>

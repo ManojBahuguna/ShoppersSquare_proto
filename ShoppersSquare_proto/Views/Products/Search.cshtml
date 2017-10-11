@@ -1,0 +1,13 @@
+﻿@using ShoppersSquare_proto.Models;
+
+@{
+    ViewBag.Title = "Search";
+    List<Product> products = Model;
+}
+
+<h2>Search Results</h2>
+
+@foreach (var product in products)
+{
+    Html.RenderPartial("_ProductCard", product);
+}

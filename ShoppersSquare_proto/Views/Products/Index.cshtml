@@ -1,0 +1,11 @@
+﻿
+@{
+    ICollection<ShoppersSquare_proto.Models.ProductType> categories = Model;
+}
+
+@Html.Partial("_MegaBanner")
+
+@foreach (var category in categories)
+{
+    @Html.Partial("_CardsContainer", category)
+}

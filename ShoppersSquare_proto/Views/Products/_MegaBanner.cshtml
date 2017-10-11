@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNet.Identity
+
+<div class="mega-banner">
+    <h1 class="banner-title">Shopper's Square</h1>
+    <p class="banner-quote">The best place for the best products</p>
+    @if (!Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "banner-btn" })
+        <span class="banner-btn-divider">or</span>
+        @Html.ActionLink("Register", "Register", "Account", null, new { @class = "banner-btn" })
+    }
+
+    @if (Context.User.IsInRole("StoreManager"))
+    {
+        @Html.ActionLink("Add Product", "Add", "Products", null, new { @class = "banner-btn" })
+    }
+
+    <style scoped>
+        .mega-banner:before {
+            background-image: url('/Content/Images/various products.jpeg');
+        }
+    </style>
+</div>

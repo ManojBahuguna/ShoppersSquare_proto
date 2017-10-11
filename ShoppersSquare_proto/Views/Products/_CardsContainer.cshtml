@@ -1,0 +1,22 @@
+﻿@using ShoppersSquare_proto.Models
+
+@{ 
+    ProductType category = Model;
+}
+
+<section class="cards-container">
+    <div class="cards-header">
+        <h3 class="cards-title">@category.Name</h3>
+        <a href="/Products/Add?category=@category.Id" class="cards-more-option">Add</a>
+        <a href="/@category.Name.Replace(' ', '-')" class="cards-more-option">More</a>
+    </div>
+    <ul class="cards-inline">
+        @{ 
+            var topProducts = category.Products.OrderByDescending(p => p.Name).Take(7).ToList(); //Name To be replaced by Rating later
+        }
+        @foreach (var product in topProducts)
+        {
+            @Html.Partial("_ProductCard", product)
+        }
+    </ul>
+</section>

@@ -1,0 +1,40 @@
+﻿@model ShoppersSquare_proto.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-panel">
+        <h3 class="form-header"> Create new Account  </h3>
+        
+        @Html.ValidationSummary(true, "", new { @class = "form-error-text" })
+        
+        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-input form-input-inline", placeholder = "First Name", tabindex = 1, required = true } })
+
+        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-input form-input-inline", placeholder = "Last Name", tabindex = 2 } })
+
+        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "form-error-text" })
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "form-error-text" })
+
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-input", placeholder = "Email ID", required = true, tabindex = 3 } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "form-error-text" })
+        
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-input", placeholder = "Password", required = true, tabindex = 4 } })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "form-error-text" })
+
+        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-input", placeholder = "Confirm Password", tabindex = 5, required = true } })
+        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "form-error-text" })
+
+        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-input", placeholder = "Phone Number", tabindex = 6, required = true } })
+        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-error-text" })
+
+        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-textarea", placeholder = "Delivery Address", rows = 3, tabindex = 7 } })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-error-text" })
+
+        <button type="submit" class="form-button" tabindex="8">Register</button>
+    </div>
+}

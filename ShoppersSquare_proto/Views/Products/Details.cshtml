@@ -1,0 +1,42 @@
+﻿@{
+    ShoppersSquare_proto.Models.Product product = Model;
+    ViewBag.Title = product.Name;
+}
+
+<div class="product-details-container">
+    <h3 class="product-title">@product.Name</h3>
+    <div class="product-details-body">
+        <section class="section-left">
+            <div class="product-image-container">
+                <span class="vertical-align-helper"></span><img src="@product.ImageUrl" class="product-image">
+            </div>
+            <div class="product-options-container">
+                @if (Context.User.IsInRole("StoreManager"))
+                {
+                    @Html.ActionLink("Update", "Update", "Products", new { id = product.Id }, new { @class = "btn" })
+                    @Html.ActionLink("Delete", "Delete", "Products", new { id = product.Id }, new { @class = "btn" })
+                }
+                else
+                {
+
+                    @Html.ActionLink("Add to Cart", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
+                    @Html.ActionLink("Buy", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
+                }
+            </div>
+        </section>
+        <section class="section-right">
+            <div class="product-info">
+                <ul class="product-info-list">
+                    <li class="info-list-item info-main">Price: ₹@product.Price</li>
+                    @if (product.Sold > 0)
+                    {
+                        <li class="info-list-item">Rating: @( ((product.Ratings / (product.Sold * 5.0)) * 5).ToString("0.#") )/<strong>5</strong></li>
+                        <li class="info-list-item">Items Sold: @product.Sold</li>
+                    }
+                    <li class="info-list-item">Added On: @product.DateAdded.ToLongDateString()</li>
+                </ul>
+            </div>
+            <p class="product-info"> @Html.Raw(product.Description.Replace(Environment.NewLine, "<br/>"))</p>
+        </section>
+    </div>
+</div>

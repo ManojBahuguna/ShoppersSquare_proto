@@ -1,0 +1,44 @@
+﻿@model ShoppersSquare_proto.Models.Product
+
+@{
+    string editType = ViewBag.isNew ? "Add" : "Update";
+    ViewBag.Title = editType + " Product";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-panel">
+        <h3 class="form-header"> @ViewBag.Title </h3>
+        
+        @Html.ValidationSummary(true, "", new { @class = "form-error-text" })
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.DateAdded)
+        @Html.HiddenFor(model => model.Ratings)
+        @Html.HiddenFor(model => model.Sold)
+
+        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-input", placeholder = "Product Name", required = true, tabindex = 1 } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-textarea", placeholder = "Product Description", required = true, rows = 3, tabindex = 2 } })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.ImageUrl, new { htmlAttributes = new { @class = "form-input", placeholder = "Image URL", required = true, tabindex = 3 } })
+        @Html.ValidationMessageFor(model => model.ImageUrl, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-input", placeholder = "Price", required = true, type = "number", tabindex = 4 } })
+        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+        @Html.DropDownList("ProductTypeId", null, htmlAttributes: new { @class = "form-input", required = true, tabindex = 5 })
+        @Html.ValidationMessageFor(model => model.ProductTypeId, "", new { @class = "text-danger" })
+
+        @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-input", placeholder = "Tags", tabindex = 6 } })
+        @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+
+        <button type="submit" class="form-button" tabindex="7">@editType Now</button>
+
+    </div>
+}

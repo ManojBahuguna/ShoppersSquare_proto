@@ -1,0 +1,24 @@
+﻿@using ShoppersSquare_proto.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-panel">
+        <h3 class="form-header"> Login to Account </h3>
+        @Html.ValidationSummary(true, "", new { @class = "form-error-text" })
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-input", placeholder = "Email ID", required = true, tabindex = 1 } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "form-error-text" })
+        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-input", placeholder = "Password", required = true, tabindex = 2 } })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "form-error-text" })
+        <label class="form-label">
+            Remember Login?
+            @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { @class = "form-checkbox", tabindex = 3 } })
+        </label>
+        <button type="submit" class="form-button" tabindex="4">Login</button>
+    </div>
+}
