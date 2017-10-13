@@ -320,6 +320,7 @@
 
 .outer-container .navbar .account-options .account-menu-btn > span {
     font-weight: normal;
+    text-align: left;
 }
 
 .outer-container .cards-container {
@@ -642,6 +643,7 @@
         user-select: none;
         overflow-x: auto;
         padding: 0;
+        background-color: #fff;
     }
 
         .cards-container .cards-inline .card-item {

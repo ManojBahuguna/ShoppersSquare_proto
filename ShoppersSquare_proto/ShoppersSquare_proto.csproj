@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201710131022406_added categories.Designer.cs">
       <DependentUpon>201710131022406_added categories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131039463_changed configuration seed method.cs" />
+    <Compile Include="Migrations\201710131039463_changed configuration seed method.Designer.cs">
+      <DependentUpon>201710131039463_changed configuration seed method.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -413,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710131022406_added categories.resx">
       <DependentUpon>201710131022406_added categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131039463_changed configuration seed method.resx">
+      <DependentUpon>201710131039463_changed configuration seed method.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

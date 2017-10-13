@@ -100,7 +100,6 @@ namespace ShoppersSquare_proto.Controllers
 
             if (ModelState.IsValid)
             {
-                product.Tags = product.Tags.ToLower();
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
                 return Redirect("~");
@@ -135,7 +134,6 @@ namespace ShoppersSquare_proto.Controllers
         {
             if (ModelState.IsValid)
             {
-                product.Tags = product.Tags.ToLower();
                 _context.Entry(product).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return Redirect("~");

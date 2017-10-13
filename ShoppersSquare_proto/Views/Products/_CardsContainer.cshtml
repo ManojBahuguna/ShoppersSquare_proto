@@ -12,7 +12,7 @@
     </div>
     <ul class="cards-inline">
         @{ 
-            var topProducts = category.Products.OrderByDescending(p => p.Name).Take(7).ToList(); //Name To be replaced by Rating later
+            var topProducts = category.Products.OrderByDescending(p => p.Ratings).Take(7).ToList(); //Name To be replaced by Rating later
         }
         @foreach (var product in topProducts)
         {
