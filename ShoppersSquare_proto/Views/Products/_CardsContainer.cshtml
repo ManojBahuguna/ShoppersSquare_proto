@@ -7,7 +7,10 @@
 <section class="cards-container">
     <div class="cards-header">
         <h3 class="cards-title">@category.Name</h3>
-        <a href="/Products/Add?category=@category.Id" class="cards-more-option">Add</a>
+        @if (Context.User.IsInRole("StoreManager"))
+        {
+            @Html.ActionLink("Add", "Add", "Products", new { category = category.Id }, new { @class = "cards-more-option" })
+        }
         <a href="/@category.Name.Replace(' ', '-')" class="cards-more-option">More</a>
     </div>
     <ul class="cards-inline">
