@@ -11,6 +11,7 @@ namespace ShoppersSquare_proto.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "ShoppersSquare_proto.Models.ApplicationDbContext";
         }
 
