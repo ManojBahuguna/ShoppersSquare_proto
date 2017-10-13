@@ -1,8 +1,11 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using ShoppersSquare_proto.Models
+
+@{ 
+    ProductType category = Model;
+}
 
 <div class="mega-banner">
-    <h1 class="banner-title">Shopper's Square</h1>
-    <p class="banner-quote">The best place for the best products</p>
+    <h1 class="banner-title"> @category.Name </h1>
     @if (!Request.IsAuthenticated)
     {
         @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "banner-btn" })
@@ -12,12 +15,13 @@
 
     @if (Context.User.IsInRole("StoreManager"))
     {
-        @Html.ActionLink("Add Product", "Add", "Products", null, new { @class = "banner-btn" })
+        @Html.ActionLink("Add Product", "Add", "Products", new { category = category.Id }, new { @class = "banner-btn" })
     }
 
     <style scoped>
         .mega-banner:before {
-            background-image: url('/Content/Images/various products.jpeg');
+            background-image: url('@category.ImageUrl');
         }
     </style>
+
 </div>

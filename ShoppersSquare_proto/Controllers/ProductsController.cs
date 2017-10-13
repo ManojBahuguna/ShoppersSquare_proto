@@ -143,6 +143,31 @@ namespace ShoppersSquare_proto.Controllers
             return View("Edit", product);
         }
 
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "StoreManager")]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            Product product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+            return Redirect("~");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

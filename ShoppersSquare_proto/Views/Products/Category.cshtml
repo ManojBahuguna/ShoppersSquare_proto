@@ -4,12 +4,15 @@
     ViewBag.Title = category.Name;
 }
 
-<h2>@category.Name</h2>
-<img src="@category.ImageUrl" />
-
-<ul>
-@foreach (var product in category.Products)
-{
-    <li>@product.Name</li>
+@{
+    Html.RenderPartial("_MegaBanner", category);
 }
-</ul>
+
+<section class="cards-container">
+    <ul class="cards-list">
+        @foreach (var product in category.Products.OrderByDescending(p => p.Ratings))
+        {
+            Html.RenderPartial("_ProductCard", product);
+        }
+    </ul>
+</section>

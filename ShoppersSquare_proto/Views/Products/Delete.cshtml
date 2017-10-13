@@ -1,0 +1,13 @@
+﻿@model ShoppersSquare_proto.Models.Product
+
+@{
+    ViewBag.Title = "Delete " + Model.Name;
+}
+
+@using (Html.BeginForm("Delete", "Products", FormMethod.Post, new { @class = "form-panel" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3 class="form-header">@ViewBag.Title</h3>
+    <button type="submit" class="form-button form-error-text" tabindex="1"><strong>Confirm and Delete</strong></button>
+}

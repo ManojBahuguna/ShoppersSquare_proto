@@ -349,6 +349,7 @@
     <Content Include="Views\ProductsTemp\Edit.cshtml" />
     <Content Include="Views\ProductsTemp\Index.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
