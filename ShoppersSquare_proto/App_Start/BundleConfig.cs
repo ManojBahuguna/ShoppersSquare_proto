@@ -18,7 +18,7 @@ namespace ShoppersSquare_proto
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                         "~/Content/font-awesome.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/styles").Include(
                       "~/Content/Css/site.css"));
         }
     }
