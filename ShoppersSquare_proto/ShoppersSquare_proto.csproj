@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201710051138129_UpdatedUserModel.Designer.cs">
       <DependentUpon>201710051138129_UpdatedUserModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710131022406_added categories.cs" />
+    <Compile Include="Migrations\201710131022406_added categories.Designer.cs">
+      <DependentUpon>201710131022406_added categories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -406,6 +410,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710051138129_UpdatedUserModel.resx">
       <DependentUpon>201710051138129_UpdatedUserModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710131022406_added categories.resx">
+      <DependentUpon>201710131022406_added categories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
