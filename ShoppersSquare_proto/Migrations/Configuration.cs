@@ -19,11 +19,11 @@ namespace ShoppersSquare_proto.Migrations
         protected override void Seed(ShoppersSquare_proto.Models.ApplicationDbContext context)
         {
             context.Categories.AddOrUpdate(c => c.Name,
-                new ProductType { Id = 0, Name = "Electronics", ImageUrl = "https://afatrading.co.ke/images/home.jpg" },
-                new ProductType { Id = 1, Name = "Home and Furniture", ImageUrl = "http://rizshops.com/images/furn1.jpg" },
-                new ProductType { Id = 2, Name = "Clothing and Accesories", ImageUrl = "http://www.summerhillbaths.co.uk/includes/templates/summerhillbaths//images/banner.jpg" },
-                new ProductType { Id = 3, Name = "Footwear", ImageUrl = "http://www.florsheim.com/shop/resources/images/index/index1-125-banner.jpg" },
-                new ProductType { Id = 4, Name = "Beauty and Personal Care", ImageUrl = "https://www.latestinbeauty.com/pub/static/frontend/lib/iammee/en_GB/Lib_IammeeCatalog/images/all-banner.jpg" }
+                new ProductType { Id = 0, Name = "Electronics", ImageUrl = "http://www.nashikfame.com/wp-content/uploads/2017/02/trison-article-slider.jpg" },
+                new ProductType { Id = 1, Name = "Home and Furniture", ImageUrl = "https://www.kimball.com/getmedia/de7a7f5a-ce84-406c-a4a5-636dde8acc4a/Desks_Main_Priority.aspx" },
+                new ProductType { Id = 2, Name = "Clothing and Accesories", ImageUrl = "https://newyorkfashiongh.com/wp-content/uploads/2017/09/o-TRADING-CLOTHES-facebook.jpg" },
+                new ProductType { Id = 3, Name = "Footwear", ImageUrl = "http://www.mywestside.com/images/gallery/womens/Footwear/footwear2_24052016.jpg" },
+                new ProductType { Id = 4, Name = "Beauty and Personal Care", ImageUrl = "https://scstylecaster.files.wordpress.com/2016/09/worst-makeup-products.jpg" }
             );
             //var storeManagerRole = "StoreManager";
             //var userEmail = "storemanager@shoppers.square";
