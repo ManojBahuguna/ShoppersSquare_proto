@@ -14,7 +14,10 @@ namespace ShoppersSquare_proto
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+                        "~/Scripts/Site.js"));
+
             bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                         "~/Content/font-awesome.css"));
 

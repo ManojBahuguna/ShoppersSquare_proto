@@ -196,82 +196,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710011808377_addedSomeTables.cs" />
-    <Compile Include="Migrations\201710011808377_addedSomeTables.Designer.cs">
-      <DependentUpon>201710011808377_addedSomeTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031225117_UpdatedProductModel.cs" />
-    <Compile Include="Migrations\201710031225117_UpdatedProductModel.Designer.cs">
-      <DependentUpon>201710031225117_UpdatedProductModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031318076_UpdatedProductModel1.cs" />
-    <Compile Include="Migrations\201710031318076_UpdatedProductModel1.Designer.cs">
-      <DependentUpon>201710031318076_UpdatedProductModel1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031437502_UpdatedProductModel2.cs" />
-    <Compile Include="Migrations\201710031437502_UpdatedProductModel2.Designer.cs">
-      <DependentUpon>201710031437502_UpdatedProductModel2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031456172_UpdatedProductModel3.cs" />
-    <Compile Include="Migrations\201710031456172_UpdatedProductModel3.Designer.cs">
-      <DependentUpon>201710031456172_UpdatedProductModel3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031523161_UpdatedProductModel4.cs" />
-    <Compile Include="Migrations\201710031523161_UpdatedProductModel4.Designer.cs">
-      <DependentUpon>201710031523161_UpdatedProductModel4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031524179_UpdatedProductModel5.cs" />
-    <Compile Include="Migrations\201710031524179_UpdatedProductModel5.Designer.cs">
-      <DependentUpon>201710031524179_UpdatedProductModel5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031524575_UpdatedProductModel6.cs" />
-    <Compile Include="Migrations\201710031524575_UpdatedProductModel6.Designer.cs">
-      <DependentUpon>201710031524575_UpdatedProductModel6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031527157_UpdatedProductModel7.cs" />
-    <Compile Include="Migrations\201710031527157_UpdatedProductModel7.Designer.cs">
-      <DependentUpon>201710031527157_UpdatedProductModel7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031528498_UpdatedProductModel8.cs" />
-    <Compile Include="Migrations\201710031528498_UpdatedProductModel8.Designer.cs">
-      <DependentUpon>201710031528498_UpdatedProductModel8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031531102_UpdatedProductModel9.cs" />
-    <Compile Include="Migrations\201710031531102_UpdatedProductModel9.Designer.cs">
-      <DependentUpon>201710031531102_UpdatedProductModel9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031534441_UpdatedProductModel10.cs" />
-    <Compile Include="Migrations\201710031534441_UpdatedProductModel10.Designer.cs">
-      <DependentUpon>201710031534441_UpdatedProductModel10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031544098_UpdatedProductModel11.cs" />
-    <Compile Include="Migrations\201710031544098_UpdatedProductModel11.Designer.cs">
-      <DependentUpon>201710031544098_UpdatedProductModel11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031558238_UpdatedProductModel12.cs" />
-    <Compile Include="Migrations\201710031558238_UpdatedProductModel12.Designer.cs">
-      <DependentUpon>201710031558238_UpdatedProductModel12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710031606563_UpdatedProductModel13.cs" />
-    <Compile Include="Migrations\201710031606563_UpdatedProductModel13.Designer.cs">
-      <DependentUpon>201710031606563_UpdatedProductModel13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710051138129_UpdatedUserModel.cs" />
-    <Compile Include="Migrations\201710051138129_UpdatedUserModel.Designer.cs">
-      <DependentUpon>201710051138129_UpdatedUserModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710131022406_added categories.cs" />
-    <Compile Include="Migrations\201710131022406_added categories.Designer.cs">
-      <DependentUpon>201710131022406_added categories.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710131039463_changed configuration seed method.cs" />
-    <Compile Include="Migrations\201710131039463_changed configuration seed method.Designer.cs">
-      <DependentUpon>201710131039463_changed configuration seed method.cs</DependentUpon>
+    <Compile Include="Migrations\201710151137287_Initial.cs" />
+    <Compile Include="Migrations\201710151137287_Initial.Designer.cs">
+      <DependentUpon>201710151137287_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderState.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductSearchResult.cs" />
     <Compile Include="Models\ProductType.cs" />
@@ -308,6 +242,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Site.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -350,6 +285,7 @@
     <Content Include="Views\ProductsTemp\Index.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -368,63 +304,12 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710011808377_addedSomeTables.resx">
-      <DependentUpon>201710011808377_addedSomeTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031225117_UpdatedProductModel.resx">
-      <DependentUpon>201710031225117_UpdatedProductModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031318076_UpdatedProductModel1.resx">
-      <DependentUpon>201710031318076_UpdatedProductModel1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031437502_UpdatedProductModel2.resx">
-      <DependentUpon>201710031437502_UpdatedProductModel2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031456172_UpdatedProductModel3.resx">
-      <DependentUpon>201710031456172_UpdatedProductModel3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031523161_UpdatedProductModel4.resx">
-      <DependentUpon>201710031523161_UpdatedProductModel4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031524179_UpdatedProductModel5.resx">
-      <DependentUpon>201710031524179_UpdatedProductModel5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031524575_UpdatedProductModel6.resx">
-      <DependentUpon>201710031524575_UpdatedProductModel6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031527157_UpdatedProductModel7.resx">
-      <DependentUpon>201710031527157_UpdatedProductModel7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031528498_UpdatedProductModel8.resx">
-      <DependentUpon>201710031528498_UpdatedProductModel8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031531102_UpdatedProductModel9.resx">
-      <DependentUpon>201710031531102_UpdatedProductModel9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031534441_UpdatedProductModel10.resx">
-      <DependentUpon>201710031534441_UpdatedProductModel10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031544098_UpdatedProductModel11.resx">
-      <DependentUpon>201710031544098_UpdatedProductModel11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031558238_UpdatedProductModel12.resx">
-      <DependentUpon>201710031558238_UpdatedProductModel12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710031606563_UpdatedProductModel13.resx">
-      <DependentUpon>201710031606563_UpdatedProductModel13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710051138129_UpdatedUserModel.resx">
-      <DependentUpon>201710051138129_UpdatedUserModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710131022406_added categories.resx">
-      <DependentUpon>201710131022406_added categories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710131039463_changed configuration seed method.resx">
-      <DependentUpon>201710131039463_changed configuration seed method.cs</DependentUpon>
-    </EmbeddedResource>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
+    <EmbeddedResource Include="Migrations\201710151137287_Initial.resx">
+      <DependentUpon>201710151137287_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

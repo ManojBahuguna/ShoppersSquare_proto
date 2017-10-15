@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Checkout";
+    ShoppersSquare_proto.Models.ApplicationUser user = Model;
+}
+
+
+
+<div class="product-details-container">
+    <h3 class="product-title">Checkout</h3>
+    <div class="product-details-body">
+        @if (user == null || user.Cart == null || user.Cart.Products.Count() == 0)
+        {
+            <p class="section-right product-info"> There are no Items in Cart! </p>
+        }
+        else
+        {
+            <section class="section-left">
+                <ul class="cart-items-list">
+                    @foreach (var cartItem in user.Cart.Products)
+                    {
+                        <li class="cart-item">
+                            @cartItem.Name
+                        </li>
+                    }
+                </ul>
+                <div class="product-options-container">
+                    <ul class="product-info-list">
+                        <li class="info-list-item"><strong>Total</strong> ₹23948</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section-right">
+                <form class="form-panel">
+                    <input class="form-input" placeholder="Address" value="@user.Cart.Address" />
+                </form>
+            </section>
+        }
+    </div>
+</div>

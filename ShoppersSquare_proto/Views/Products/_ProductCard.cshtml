@@ -17,9 +17,9 @@
         }
         else
         {
-
-            @Html.ActionLink("Add to Cart", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
+            <button class="btn" onclick="AddProductToCart(@product.Id)">Add to Cart</button>
             @Html.ActionLink("Buy", "Details", "Products", new { id = product.Id }, new { @class = "btn" })
         }
     </footer>
 </li>
+

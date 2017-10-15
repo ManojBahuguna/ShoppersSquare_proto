@@ -1,10 +1,13 @@
-﻿using ShoppersSquare_proto.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using ShoppersSquare_proto.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ShoppersSquare_proto.Controllers
@@ -57,16 +60,6 @@ namespace ShoppersSquare_proto.Controllers
             DoSearch(query).ForEach(p => searchResults.Add(new ProductSearchResult { id = p.Id, name = p.Name }));
 
             return Json(searchResults, JsonRequestBehavior.AllowGet);
-        }
-
-        public ActionResult Checkout()
-        {
-            return null;
-        }
-
-        public ActionResult Checkout(int id)
-        {
-            return null;
         }
 
         private List<Product> DoSearch(String query)
@@ -166,6 +159,55 @@ namespace ShoppersSquare_proto.Controllers
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return Redirect("~");
+        }
+        
+        [HttpPost]
+        public ActionResult AddToCart(int? id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new { status = "Unauthorized", msg = "Please login first!" });
+            }
+            if (id == null)
+            {
+                return Json(new { status = "BadRequest", msg = "No Input Recieved!" });
+            }
+            Product product = _context.Products.Find(id);
+            if (product == null)
+            {
+                return Json(new { status = "NotFound", msg = "Product Not Found!" });
+            }
+            var currentUser = GetCurrentUser();
+            currentUser.Cart.Products.Add(product);
+            currentUser.Cart.Date = DateTime.Now;
+            currentUser.Cart.Address = currentUser.Address;
+            currentUser.Cart.OrderStatusId = _context.OrderStates.First(o => o.Name == "In Process").Id;
+            currentUser.Cart.UserId = currentUser.Id;
+            _context.SaveChanges();
+
+            return Json(new { status = "Ok", msg = "Product added to cart!"});
+        }
+
+        [Authorize]
+        public ActionResult Checkout()
+        {
+            return View(GetCurrentUser());
+        }
+
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [HttpPost, ActionName("Checkout")]
+        public ActionResult CheckoutConfirmed(Order order)
+        {
+            return View();
+        }
+
+
+        private ApplicationUser GetCurrentUser()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = _context.Users.First(u => u.Id == currentUserId);
+            return currentUser;
         }
 
         protected override void Dispose(bool disposing)
