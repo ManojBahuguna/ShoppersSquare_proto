@@ -1,0 +1,34 @@
+﻿@using ShoppersSquare_proto.Models
+
+
+@{
+    ViewBag.Title = "OrderHistory";
+    IEnumerable<Order> orders = Model;
+}
+
+@{
+    Html.RenderPartial("_MegaBanner", new ProductType
+    {
+        Name = "Order History",
+        ImageUrl = "/Content/Images/various products.jpeg"
+    });
+}
+
+<div class="inline-product-details-list">
+    @foreach (var order in orders)
+    {
+        <a href="/Products/Order/@order.Id" class="list-item inline-list-heading list-item-link">@order.Date.ToLongDateString() <span class="h-padding"></span> @order.Date.ToShortTimeString()</a>
+        
+        foreach (var item in order.CartItems)
+        {
+            <div class="list-item">
+                <span class="list-item-section list-item-expand">@item.Product.Name</span>
+                @if (item.Quantity > 1)
+                {
+                    <span title="Price" class="list-item-section">x@(item.Quantity)</span>
+                }
+                <span title="Price" class="list-item-section">₹@(Decimal.Round(item.Product.Price * item.Quantity))</span>
+            </div>
+        }
+    }
+</div>

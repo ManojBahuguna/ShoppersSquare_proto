@@ -14,9 +14,9 @@ if (id === undefined || id === null)
         if (xhr.response.status === "Unauthorized")
             goToLogin();
         else if (xhr.response.status === "Ok")
-            window.alert("Product added to cart!");
+            window.alert(xhr.response.msg);
         else
-            console.log(typeof xhr.response);
+            window.alert(xhr.response.msg);
     };
 
     xhr.onerror = function () {

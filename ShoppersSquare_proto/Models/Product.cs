@@ -39,7 +39,5 @@ namespace ShoppersSquare_proto.Models
         public short Sold { get; set; }
 
         public String Tags { get; set; }
-
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

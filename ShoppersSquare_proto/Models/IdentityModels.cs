@@ -14,6 +14,7 @@ namespace ShoppersSquare_proto.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
+        public int? CartId { get; set; }
         public virtual Order Cart { get; set; }
         public virtual ICollection<Order> OrderHistory { get; set; }
 
@@ -32,6 +33,7 @@ namespace ShoppersSquare_proto.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderState> OrderStates { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

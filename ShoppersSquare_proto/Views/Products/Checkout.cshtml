@@ -5,36 +5,52 @@
 }
 
 
-
 <div class="product-details-container">
     <h3 class="product-title">Checkout</h3>
-    <div class="product-details-body">
-        @if (user == null || user.Cart == null || user.Cart.Products.Count() == 0)
+    <div class="product-details-body checkout-section">
+
+        @if (user == null || user.Cart == null || user.Cart.CartItems.Count() == 0)
         {
             <p class="section-right product-info"> There are no Items in Cart! </p>
         }
         else
         {
             <section class="section-left">
-                <ul class="cart-items-list">
-                    @foreach (var cartItem in user.Cart.Products)
+                <div class="product-info compress">
+                    <ul class="product-info-list">
+                        <li class="info-list-item"><strong>Total: ₹@user.Cart.CartItems.Sum(p => p.Product.Price * p.Quantity)</strong></li>
+                    </ul>
+                </div>
+                <ul class="inline-product-details-list">
+                    @foreach (var item in user.Cart.CartItems)
                     {
-                        <li class="cart-item">
-                            @cartItem.Name
+                        <li class="list-item">
+                            <span class="list-item-section list-item-expand">@item.Product.Name</span>
+                            @if (item.Quantity > 1)
+                            {
+                                <span title="Price" class="list-item-section">x@(item.Quantity)</span>
+                            }
+                            <span title="Price" class="list-item-section">@(item.Product.Price * item.Quantity)</span>
+                            <span title="Delete Item!" class="list-item-section"><span class="fa fa-close"></span></span>
                         </li>
                     }
                 </ul>
-                <div class="product-options-container">
-                    <ul class="product-info-list">
-                        <li class="info-list-item"><strong>Total</strong> ₹23948</li>
-                    </ul>
-                </div>
             </section>
             <section class="section-right">
-                <form class="form-panel">
-                    <input class="form-input" placeholder="Address" value="@user.Cart.Address" />
-                </form>
+                <div class="form-panel checkout-form">
+                    <h4 class="form-header">Recheck Details</h4>
+                    <label class="form-input-label">Email Id</label>
+                    <input class="form-input" placeholder="Email ID" name="email" type="email" value="@user.Email" />
+                    <label class="form-input-label">Phone Number</label>
+                    <input class="form-input" placeholder="Phone Number" name="phoneNumber" type="tel" value="@user.PhoneNumber" />
+                    <label class="form-input-label">Address</label>
+                    <textarea class="form-textarea" placeholder="Delivery Address" rows="3">@user.Address</textarea>
+                    <p><strong>Please Note: </strong>You will be contacted first to verify the address before dispatching the order.</p>
+                    @Html.ActionLink("Proceed to Payment", "CheckoutSuccess", null, new { @class = "form-button" });
+                </div>
+
             </section>
         }
+
     </div>
 </div>

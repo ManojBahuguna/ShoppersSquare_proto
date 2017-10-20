@@ -3,7 +3,7 @@ namespace ShoppersSquare_proto.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class ReInitialize : DbMigration
     {
         public override void Up()
         {
@@ -55,6 +55,21 @@ namespace ShoppersSquare_proto.Migrations
                 .Index(t => t.OrderStatusId)
                 .Index(t => t.UserId)
                 .Index(t => t.ApplicationUser_Id);
+            
+            CreateTable(
+                "dbo.CartItems",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Quantity = c.Byte(nullable: false),
+                        Product_Id = c.Int(nullable: false),
+                        Order_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Products", t => t.Product_Id, cascadeDelete: true)
+                .ForeignKey("dbo.Orders", t => t.Order_Id)
+                .Index(t => t.Product_Id)
+                .Index(t => t.Order_Id);
             
             CreateTable(
                 "dbo.OrderStates",
@@ -140,36 +155,21 @@ namespace ShoppersSquare_proto.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
-            CreateTable(
-                "dbo.OrderProducts",
-                c => new
-                    {
-                        Order_Id = c.Int(nullable: false),
-                        Product_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Order_Id, t.Product_Id })
-                .ForeignKey("dbo.Orders", t => t.Order_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Products", t => t.Product_Id, cascadeDelete: true)
-                .Index(t => t.Order_Id)
-                .Index(t => t.Product_Id);
-            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Products", "ProductTypeId", "dbo.ProductTypes");
             DropForeignKey("dbo.Orders", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Orders", "ApplicationUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "Cart_Id", "dbo.Orders");
-            DropForeignKey("dbo.OrderProducts", "Product_Id", "dbo.Products");
-            DropForeignKey("dbo.OrderProducts", "Order_Id", "dbo.Orders");
             DropForeignKey("dbo.Orders", "OrderStatusId", "dbo.OrderStates");
-            DropIndex("dbo.OrderProducts", new[] { "Product_Id" });
-            DropIndex("dbo.OrderProducts", new[] { "Order_Id" });
+            DropForeignKey("dbo.CartItems", "Order_Id", "dbo.Orders");
+            DropForeignKey("dbo.CartItems", "Product_Id", "dbo.Products");
+            DropForeignKey("dbo.Products", "ProductTypeId", "dbo.ProductTypes");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -177,17 +177,19 @@ namespace ShoppersSquare_proto.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", new[] { "Cart_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.CartItems", new[] { "Order_Id" });
+            DropIndex("dbo.CartItems", new[] { "Product_Id" });
             DropIndex("dbo.Orders", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Orders", new[] { "UserId" });
             DropIndex("dbo.Orders", new[] { "OrderStatusId" });
             DropIndex("dbo.Products", new[] { "ProductTypeId" });
-            DropTable("dbo.OrderProducts");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.OrderStates");
+            DropTable("dbo.CartItems");
             DropTable("dbo.Orders");
             DropTable("dbo.Products");
             DropTable("dbo.ProductTypes");

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using ShoppersSquare_proto.Models;
 using System;
 using System.Collections.Generic;
@@ -162,30 +161,48 @@ namespace ShoppersSquare_proto.Controllers
         }
         
         [HttpPost]
-        public ActionResult AddToCart(int? id)
+        public ActionResult AddToCart(int id, byte? quantity)
         {
             if (!User.Identity.IsAuthenticated)
-            {
                 return Json(new { status = "Unauthorized", msg = "Please login first!" });
-            }
-            if (id == null)
-            {
-                return Json(new { status = "BadRequest", msg = "No Input Recieved!" });
-            }
+
+            if(quantity != null && (quantity < 1 || quantity > CartItem.MaxQuantity))
+                return Json(new { status = "BadRequest", msg = "Item quantity should be between 1 to 200 per order!" });
+
             Product product = _context.Products.Find(id);
             if (product == null)
-            {
                 return Json(new { status = "NotFound", msg = "Product Not Found!" });
-            }
+
+
             var currentUser = GetCurrentUser();
-            currentUser.Cart.Products.Add(product);
+            if(currentUser.Cart == null)
+            {
+                currentUser.Cart = _context.Orders.Add(new Order { });
+                currentUser.Cart.CartItems = new List<CartItem>();
+            }
+            var cartItem = currentUser.Cart.CartItems.FirstOrDefault(c => c.Product == product);
+
+            quantity = quantity == null ? 1 : quantity;
+
+            if (cartItem == null) {
+                cartItem = _context.CartItems.Add(new CartItem { ProductId = product.Id, Quantity = (byte)quantity });
+                currentUser.Cart.CartItems.Add(cartItem);
+            }
+            else {
+                quantity = (byte) (cartItem.Quantity + quantity);
+
+                if (quantity> CartItem.MaxQuantity)
+                    return Json(new { status = "BadRequest", msg = "Exceeded Max Quantity Cap of 200 items per order!" });
+
+                cartItem.Quantity = (byte) quantity;
+            }
             currentUser.Cart.Date = DateTime.Now;
             currentUser.Cart.Address = currentUser.Address;
             currentUser.Cart.OrderStatusId = _context.OrderStates.First(o => o.Name == "In Process").Id;
             currentUser.Cart.UserId = currentUser.Id;
             _context.SaveChanges();
 
-            return Json(new { status = "Ok", msg = "Product added to cart!"});
+            return Json(new { status = "Ok", msg = "Product added to cart! "});
         }
 
         [Authorize]
@@ -200,6 +217,57 @@ namespace ShoppersSquare_proto.Controllers
         public ActionResult CheckoutConfirmed(Order order)
         {
             return View();
+        }
+
+        [Authorize]
+        public ActionResult CheckoutSuccess()
+        {
+            var currentUser = GetCurrentUser();
+
+            var order = _context.Orders.Add(new Order
+                {
+                    Address = currentUser.Cart.Address,
+                    Date = DateTime.Now,
+                    Comment = currentUser.Cart.OrderStatus.Description,
+                    OrderStatusId = currentUser.Cart.OrderStatusId,
+                    UserId = currentUser.Cart.UserId
+                }
+            );
+            order.CartItems = currentUser.Cart.CartItems.ToList();
+            if(currentUser.OrderHistory == null)
+                currentUser.OrderHistory = new List<Order>();
+
+            currentUser.OrderHistory.Add(order);
+            _context.Orders.Remove(currentUser.Cart);
+            _context.SaveChanges();
+            return RedirectToAction("OrderHistory");
+        }
+
+        [Authorize]
+        public ActionResult OrderHistory()
+        {
+            if (User.IsInRole("StoreManager"))
+            {
+                return View(_context.Users.SelectMany(u => u.OrderHistory).ToList());
+            }
+            return View(GetCurrentUser().OrderHistory);
+        }
+
+        [Authorize]
+        public ActionResult Order(int id)
+        {
+            Order order;
+
+            if (User.IsInRole("StoreManager"))
+                order = _context.Orders.Find(id);
+            else
+                order = GetCurrentUser().OrderHistory.FirstOrDefault(o => o.Id == id);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
         }
 
 

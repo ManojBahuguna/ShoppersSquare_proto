@@ -1,0 +1,20 @@
+﻿@using ShoppersSquare_proto.Models
+
+@{
+    Order order = Model;
+    ViewBag.Title = "Order";
+}
+<h2>Details for Order no. @order.Id</h2>
+<br/>Date: @order.Date.ToLongDateString()
+<br/>Time: @order.Date.ToShortTimeString()
+<br/>Address: @order.Address
+<br/>Comment: @order.Comment
+<br/>Items : @foreach (var item in order.CartItems)
+{
+    <span>@item.Product.Name</span>
+    if (item.Quantity > 1)
+    {
+        <span>@item.Quantity</span>
+    }
+    <span> | </span>
+}

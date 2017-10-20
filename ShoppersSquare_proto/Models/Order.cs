@@ -16,7 +16,7 @@ namespace ShoppersSquare_proto.Models
         public String Address { get; set; }
 
         [Required]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Comment { get; set; }

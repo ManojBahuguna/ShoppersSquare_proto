@@ -196,12 +196,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710151137287_Initial.cs" />
-    <Compile Include="Migrations\201710151137287_Initial.Designer.cs">
-      <DependentUpon>201710151137287_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201710171911411_ReInitialize.cs" />
+    <Compile Include="Migrations\201710171911411_ReInitialize.Designer.cs">
+      <DependentUpon>201710171911411_ReInitialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710172039287_Added CartItem Model.cs" />
+    <Compile Include="Migrations\201710172039287_Added CartItem Model.Designer.cs">
+      <DependentUpon>201710172039287_Added CartItem Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710180624396_Updated OrderItem model.cs" />
+    <Compile Include="Migrations\201710180624396_Updated OrderItem model.Designer.cs">
+      <DependentUpon>201710180624396_Updated OrderItem model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710180637336_Updated User model.cs" />
+    <Compile Include="Migrations\201710180637336_Updated User model.Designer.cs">
+      <DependentUpon>201710180637336_Updated User model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
@@ -286,6 +299,8 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Checkout.cshtml" />
+    <Content Include="Views\Products\OrderHistory.cshtml" />
+    <Content Include="Views\Products\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,8 +322,17 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710151137287_Initial.resx">
-      <DependentUpon>201710151137287_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710171911411_ReInitialize.resx">
+      <DependentUpon>201710171911411_ReInitialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710172039287_Added CartItem Model.resx">
+      <DependentUpon>201710172039287_Added CartItem Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710180624396_Updated OrderItem model.resx">
+      <DependentUpon>201710180624396_Updated OrderItem model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710180637336_Updated User model.resx">
+      <DependentUpon>201710180637336_Updated User model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace ShoppersSquare_proto.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class ReInitialize : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ReInitialize));
         
         string IMigrationMetadata.Id
         {
-            get { return "201710151137287_Initial"; }
+            get { return "201710171911411_ReInitialize"; }
         }
         
         string IMigrationMetadata.Source
