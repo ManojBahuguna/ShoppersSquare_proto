@@ -173,7 +173,6 @@ namespace ShoppersSquare_proto.Controllers
             if (product == null)
                 return Json(new { status = "NotFound", msg = "Product Not Found!" });
 
-
             var currentUser = GetCurrentUser();
             if(currentUser.Cart == null)
             {
@@ -202,7 +201,29 @@ namespace ShoppersSquare_proto.Controllers
             currentUser.Cart.UserId = currentUser.Id;
             _context.SaveChanges();
 
-            return Json(new { status = "Ok", msg = "Product added to cart! ");
+            return Json(new { status = "Ok", msg = "Product added to cart! ", cartItemsCount = currentUser.Cart.CartItems.Sum(p => 1 * p.Quantity) });
+        }
+
+        [HttpPost]
+        public ActionResult RemoveFromCart(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+                return Json(new { status = "Unauthorized", msg = "Please login first!" });
+
+            var currentUser = GetCurrentUser();
+
+            if (currentUser.Cart == null )
+                return Json(new { status = "NotFound", msg = "Cart Item Not Found!" });
+
+            var cartItem = currentUser.Cart.CartItems.FirstOrDefault(c => c.Id == id);
+
+            if (cartItem == null)
+                return Json(new { status = "NotFound", msg = "Cart Item Not Found!" });
+
+            currentUser.Cart.CartItems.Remove(cartItem);
+            _context.SaveChanges();
+
+            return Json(new { status = "Ok", msg = "Product Removed from cart! ", cartItemsCount = currentUser.Cart.CartItems.Sum(p => 1 * p.Quantity) });
         }
 
         [Authorize]

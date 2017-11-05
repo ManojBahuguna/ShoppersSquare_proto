@@ -15,7 +15,7 @@
 }
 
 <div class="inline-product-details-list">
-    @foreach (var order in orders)
+    @foreach (var order in orders.OrderByDescending(o => o.Date))
     {
         <a href="/Products/Order/@order.Id" class="list-item inline-list-heading list-item-link">@order.Date.ToLongDateString() <span class="h-padding"></span> @order.Date.ToShortTimeString()</a>
         

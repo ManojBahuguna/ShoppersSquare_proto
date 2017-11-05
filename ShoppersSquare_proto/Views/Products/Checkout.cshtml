@@ -31,7 +31,7 @@
                                 <span title="Price" class="list-item-section">x@(item.Quantity)</span>
                             }
                             <span title="Price" class="list-item-section">@(item.Product.Price * item.Quantity)</span>
-                            <span title="Delete Item!" class="list-item-section"><span class="fa fa-close"></span></span>
+                            <span onclick="RemoveItemFromCart(@item.Id)" title="Delete Item!" class="list-item-section btn-delete"><span class="fa fa-close"></span></span>
                         </li>
                     }
                 </ul>
@@ -54,3 +54,36 @@
 
     </div>
 </div>
+
+@section scripts {
+    <script>
+        function RemoveItemFromCart(id) {
+            console.log(id);
+            var goToLogin = function () {
+                location.href = "/login?returnurl=" + location.pathname;
+            };
+            if (id === undefined || id === null)
+                return;
+
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+
+            xhr.onload = function () {
+                if (xhr.response.status === "Unauthorized")
+                    goToLogin();
+                else if (xhr.response.status === "Ok")
+                    window.location.reload();
+                else
+                    window.alert(xhr.response.msg);
+            };
+
+            xhr.onerror = function () {
+                console.log('error' + xhr.response);
+            };
+
+            xhr.open('POST', '/Products/RemoveFromCart', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("id=" + id);
+        }
+    </script>
+}

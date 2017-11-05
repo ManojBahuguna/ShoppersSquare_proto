@@ -2,7 +2,6 @@
     var goToLogin = function () {
         location.href = "/login?returnurl=" + location.pathname;
     };
-    console.log(id);
 if (id === undefined || id === null)
         return;
 
@@ -14,8 +13,7 @@ if (id === undefined || id === null)
             goToLogin();
         else if (xhr.response.status === "Ok") {
             var cartItemsCount = document.getElementById('cartItemsCount');
-            console.log(cartItemsCount.innerText);
-            cartItemsCount.innerText = Number(cartItemsCount.innerText) + 1;
+            cartItemsCount.innerText = xhr.response.cartItemsCount;
         }
         else
             window.alert(xhr.response.msg);
