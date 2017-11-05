@@ -19,8 +19,8 @@
 
 @if (User.Identity.IsAuthenticated && !User.IsInRole("StoreManager"))
 {
-<a href="/products/checkout" title="Click to view cart items and checkout" class="checkout-button fa fa-2x fa-shopping-cart">
-    <span class="btn-badge" id="cartItemsCount"> @cartItemsCount </span>
-    <span class="btn-label"> Checkout </span>
-</a>
+    <a href="/products/checkout" title="Click to view cart items and checkout" class="checkout-button fa fa-2x fa-shopping-cart">
+        <span class="btn-badge" id="cartItemsCount"> @cartItemsCount </span>
+        <span class="btn-label"> Checkout </span>
+    </a>
 }

@@ -14,6 +14,11 @@ if (id === undefined || id === null)
         else if (xhr.response.status === "Ok") {
             var cartItemsCount = document.getElementById('cartItemsCount');
             cartItemsCount.innerText = xhr.response.cartItemsCount;
+            var container = cartItemsCount.parentNode;
+            containerHtml = container.innerHTML;
+            var clone = container.cloneNode();
+            container.replaceWith(clone);
+            clone.innerHTML = containerHtml;
         }
         else
             window.alert(xhr.response.msg);

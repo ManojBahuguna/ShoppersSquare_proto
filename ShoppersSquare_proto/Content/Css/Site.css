@@ -16,6 +16,14 @@
 }
 
 
+@keyframes shake {
+    from {
+        transform: rotateZ(-20deg);
+    }
+    to {
+        transform: rotateZ(20deg);
+    }
+}
 
 .checkout-button {
     color: #fff;
@@ -31,6 +39,7 @@
     text-decoration: none;
     z-index: 10;
     text-shadow: 0.05em 0.05em 0.05em #000;
+    animation: shake 70ms 5 linear alternate;
 }
 
     .checkout-button:hover {
