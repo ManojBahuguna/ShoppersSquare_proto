@@ -1,6 +1,8 @@
 ﻿@{
     ShoppersSquare_proto.Models.Product product = Model;
     ViewBag.Title = product.Name;
+
+    Html.RenderPartial("_CheckoutButton");
 }
 
 <div class="product-details-container">

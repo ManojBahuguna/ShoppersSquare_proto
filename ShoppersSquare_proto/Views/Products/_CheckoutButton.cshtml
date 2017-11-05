@@ -1,0 +1,26 @@
+﻿@using ShoppersSquare_proto.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@{
+    int cartItemsCount = 0;
+    if (User.Identity.IsAuthenticated)
+    {
+        ApplicationDbContext context = new ApplicationDbContext();
+        var userId = User.Identity.GetUserId();
+        var user = context.Users.First(u => u.Id == userId);
+
+        if (user.Cart != null)
+        {
+            cartItemsCount = user.Cart.CartItems.Sum(p => 1 * p.Quantity);
+        }
+    }
+}
+
+@if (User.Identity.IsAuthenticated && !User.IsInRole("StoreManager"))
+{
+<a href="/products/checkout" title="Click to view cart items and checkout" class="checkout-button fa fa-2x fa-shopping-cart">
+    <span class="btn-badge" id="cartItemsCount"> @cartItemsCount </span>
+    <span class="btn-label"> Checkout </span>
+</a>
+}

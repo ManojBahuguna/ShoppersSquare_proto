@@ -202,7 +202,7 @@ namespace ShoppersSquare_proto.Controllers
             currentUser.Cart.UserId = currentUser.Id;
             _context.SaveChanges();
 
-            return Json(new { status = "Ok", msg = "Product added to cart! "});
+            return Json(new { status = "Ok", msg = "Product added to cart! ");
         }
 
         [Authorize]

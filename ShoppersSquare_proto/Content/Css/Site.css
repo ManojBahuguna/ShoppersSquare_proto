@@ -9,6 +9,62 @@
 }
 
 
+
+
+
+
+.checkout-button {
+    color: #fff;
+    background-color: #333;
+    display: inline-block;
+    padding: 0.3em 0.4em;
+    position: fixed;
+    font-size: 1.7em;
+    border: 0.06em solid;
+    box-shadow: 0 0 0.05em 0.07em #333;
+    border-radius: 0.2em;
+    margin: 0.5em 0.1em;
+    text-decoration: none;
+    z-index: 10;
+    text-shadow: 0.05em 0.05em 0.05em #000;
+}
+
+    .checkout-button:hover {
+        box-shadow: 0 0 0.02em 0.1em #333;
+    }
+
+    .checkout-button * {
+        font-family: bree serif, serif;
+        font-size: 0.85em;
+    }
+
+    .checkout-button > .btn-label {
+        padding-left: 0.5em;
+        display: none;
+    }
+
+    .checkout-button:hover > .btn-label {
+        display: inline-block;
+    }
+
+.btn-badge {
+    position: absolute;
+    top: -0.9em;
+    right: -0.9em;
+    background-color: #333;
+    color: white;
+    border: 0.12em solid #eee;
+    box-shadow: 0 0 0.02em 0.1em #333;
+    padding: 0.15em 0.5em;
+    border-radius: 50%;
+    line-height: 1.2em;
+    vertical-align: middle;
+    font-size: 0.5em;
+}
+
+
+
+
 .h-padding {
     padding: 0 0.5em;
 }
